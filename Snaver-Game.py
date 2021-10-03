@@ -1,7 +1,7 @@
 from blessed import Terminal
 import time
 import random
-# from time import sleep
+
 
 term = Terminal()
 
@@ -53,8 +53,6 @@ def read_the_key():
         time_start = time.time()
         val = term.inkey(timeout=0.2)
         remaining_time = time.time() - time_start
-        # if val:
-        #     sleep(remaining_time)
         return val.name, remaining_time
 
 
@@ -94,7 +92,7 @@ def modify_lines(lines):
 if __name__ == '__main__':
     while countdown_timer > 0:
         start = time.time()
-        # print(term.clear)   # I can comment that line if I want to see printing the game board step by step.
+        print(term.clear)   # I can comment that line if I want to see printing the game board step by step.
         print_headers()
         draw_lines()
         draw_line_with_snake()
@@ -104,7 +102,8 @@ if __name__ == '__main__':
         if point:
             score += 1
         line_with_snake = move_the_snake(snake_position, key, line_with_snake)
-        print(remaining_time)   # This print is just for analysis / debugging.
         lines = modify_lines(lines)
         time_lapse = time.time() - start
         countdown_timer -= time_lapse
+    print(f"Time's up! You gained {score} points.")
+        
